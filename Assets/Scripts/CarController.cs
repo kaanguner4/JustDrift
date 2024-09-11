@@ -9,6 +9,7 @@ public class CarControl : MonoBehaviour
     [SerializeField] public float SteerAngle = 140;
     [SerializeField] public float Traction = 1;
     [SerializeField] public float FixedYPosition = -0.2025898f;
+    [SerializeField] public FixedJoystick joystick;
 
     private Rigidbody rb;
     private Vector2 touchStartPos; // Ýlk dokunma pozisyonu
@@ -30,54 +31,35 @@ public class CarControl : MonoBehaviour
 
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if (Input.touchCount == 3)
         {
             ResetCarPosition();
         };
 
-        // Dokunmatik kontrolleri iþleme
-        if (Input.touchCount > 0)
-        {
-            if (Input.touchCount == 2)
-            {
-                isMovingBackward = true;
+        
+           
+        MoveCar();
                 
-                Vector3 backwardForce = -transform.forward * MoveSpeed / 2 * Time.deltaTime;
-                rb.AddForce(backwardForce, ForceMode.Acceleration);
-            }
-            else
-            {
-                isMovingBackward = false;
-
-                Touch touch = Input.GetTouch(0); // Ýlk dokunuþu al
-
-                if (touch.phase == TouchPhase.Began)
-                {
-                    // Dokunma baþladýðýnda pozisyonu kaydet
-                    touchStartPos = touch.position;
-                }
-                else if (touch.phase == TouchPhase.Moved || touch.phase == TouchPhase.Stationary)
-                {
-                    // Dokunma hareket ettikçe yönü belirle
-                    Vector2 touchDelta = touch.position - touchStartPos;
-
-                    // Yön hareketi (Horizontal deðerlerini belirle)
-                    float horizontal = Mathf.Clamp(touchDelta.x / Screen.width, -1, 1); // Sað/sol hareket
-
-
-                    MoveCar(horizontal);
-                }
-            }
-
-        }
-    }
-
-    void MoveCar(float horizontalInput)
-    {
+            
 
         
+    }
+
+    void MoveCar()
+    {
+
+        Vector3 forwardForce = transform.forward * MoveSpeed * joystick.Vertical * Time.deltaTime;
+        rb.AddForce(forwardForce, ForceMode.Acceleration);
+        Quaternion deltaRotation = Quaternion.Euler(Vector3.up * joystick.Horizontal * SteerAngle * Time.deltaTime);
+        rb.MoveRotation(rb.rotation * deltaRotation);
+        
+
+
+
+
+        /*
         // when there is a touch car goes forward
         Vector3 forwardForce = transform.forward * MoveSpeed * Time.deltaTime;
         rb.AddForce(forwardForce, ForceMode.Acceleration);
@@ -88,6 +70,7 @@ public class CarControl : MonoBehaviour
             Quaternion deltaRotation = Quaternion.Euler(Vector3.up * horizontalInput * SteerAngle * Time.deltaTime);
             rb.MoveRotation(rb.rotation * deltaRotation);
         }
+        */
     }
 
     void ResetCarPosition()
