@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody), typeof(BoxCollider))]
-public class PlayerController : MonoBehaviour
+public class CarController : MonoBehaviour
 {
     [Header("Car Settings")]
     [SerializeField] public float MoveSpeed = 40;
@@ -11,16 +11,21 @@ public class PlayerController : MonoBehaviour
     [SerializeField] public float Traction = 1;
     [SerializeField] public float FixedYPosition = -0.2025898f;
 
+    [Header("Fuel")]
+    [SerializeField] public float Fuel = 100;
+    [SerializeField] public float FuelConsumption = 1;
 
-    [Header("")]
+    [Header("Joystick")]
     [SerializeField] private Rigidbody rb;
     [SerializeField] private FloatingJoystick _joystick;
     private Vector3 startPosition;
     private Quaternion startRotation;
     private bool isMovingBackward = false;
 
+
     private void Start()
     {
+
         rb = GetComponent<Rigidbody>();
         rb.drag = Drag;
 
@@ -53,6 +58,13 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        
+        if (rb.velocity.magnitude > 0.1f)
+        {
+            FuelManager.instance.RemoveFuel();
+        }
+
+
         Vector3 forwardForce = new Vector3(_joystick.Horizontal * MoveSpeed, rb.velocity.y, _joystick.Vertical * MoveSpeed);
 
         // Kuvveti ekliyoruz, ama z ekseninde ileri hareketi saðlýyoruz (hareket eksenine dikkat etmelisin)
