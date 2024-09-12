@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class JoystickCanvasController : MonoBehaviour
+public class ToggleCanvas : MonoBehaviour
 {
   
     public GameObject joystick;
@@ -20,13 +20,12 @@ public class JoystickCanvasController : MonoBehaviour
             Debug.Log("Basýldý");
            
             joystick.transform.position = _startTouchPosition;
-            joystick.SetActive(true);
    
         }
         else
         {
             Debug.Log("Çekildi");
-            joystick.SetActive(false);
+           
         }
         
     }
