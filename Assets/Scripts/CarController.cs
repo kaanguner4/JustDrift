@@ -31,7 +31,7 @@ public class PlayerController : MonoBehaviour
         startPosition = transform.position;
         startRotation = transform.rotation;
     }
-    private void FixedUpdate()
+    /*private void FixedUpdate()
     {
         if (Input.touchCount == 3)
         {
@@ -49,19 +49,23 @@ public class PlayerController : MonoBehaviour
             rb.AddForce(forwardForce, ForceMode.Acceleration);
             MoveCar(isMovingBackward);
         }
-    }
+    }*/
 
-    /*private void FixedUpdate()
+    private void FixedUpdate()
     {
-        _rigidbody.velocity = new Vector3(_joystick.Horizontal * _moveSpeed, _rigidbody.velocity.y, _joystick.Vertical * _moveSpeed);
+        Vector3 forwardForce = new Vector3(_joystick.Horizontal * MoveSpeed, rb.velocity.y, _joystick.Vertical * MoveSpeed);
+
+        // Kuvveti ekliyoruz, ama z ekseninde ileri hareketi saðlýyoruz (hareket eksenine dikkat etmelisin)
+        rb.AddForce(forwardForce, ForceMode.Acceleration);
 
         if (_joystick.Horizontal != 0 || _joystick.Vertical != 0)
         {
-            transform.rotation = Quaternion.LookRotation(_rigidbody.velocity);
-            
+            Quaternion targetRotation = Quaternion.LookRotation(new Vector3(_joystick.Horizontal * Time.deltaTime, 0, _joystick.Vertical * Time.deltaTime));
+            rb.MoveRotation(Quaternion.Slerp(rb.rotation, targetRotation, SteerAngle * Time.deltaTime));
+
         }
-        
-    }*/
+
+    }
 
     void MoveCar(bool isMoveingBackward)
     {
