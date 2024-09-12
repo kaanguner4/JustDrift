@@ -19,7 +19,7 @@ public class ToggleCanvas : MonoBehaviour
 
             Debug.Log("Basýldý");
            
-            joystick.transform.position = _startTouchPosition;
+            //joystick.transform.position = _startTouchPosition;
    
         }
         else
