@@ -1,7 +1,3 @@
-//coin almadan fuelTank  yeniden olluþturamýyorum
-
-
-
 
 
 using System.Collections;
