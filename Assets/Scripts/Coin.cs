@@ -19,7 +19,9 @@ public class Coin : MonoBehaviour
         {
             ScoreManager.instance.AddScore(value); 
             spawner.activeCoins--; 
-            gameObject.SetActive(false); 
+            gameObject.SetActive(false);
+            gameObject.transform.position = RandomSpawner.instance.GetRandomPosition();
+            gameObject.SetActive(true);
         }
     }
 }

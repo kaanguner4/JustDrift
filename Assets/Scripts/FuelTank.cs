@@ -18,8 +18,10 @@ public class FuelTank : MonoBehaviour
         if (other.name == "Car")
         {
             FuelManager.instance.AddFuel(value);
-            //spawner.activeFuelTanks--;
+            spawner.activeFuelTanks--;
             gameObject.SetActive(false);
+            gameObject.transform.position = RandomSpawner.instance.GetRandomPosition();
+            gameObject.SetActive(true);
         }
     }
 }
