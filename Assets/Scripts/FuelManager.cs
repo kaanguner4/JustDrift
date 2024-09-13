@@ -7,11 +7,14 @@ public class FuelManager : MonoBehaviour
 {
     [SerializeField] public TextMeshProUGUI fuelText;
     [SerializeField] public GameObject Car;
- 
+
+    private bool isFuelEmpty;
+
     private CarController carController;
 
     public static FuelManager instance;
     
+    public GameManager gameManager;
 
 
     private void OnEnable()
@@ -31,21 +34,25 @@ public class FuelManager : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if (carController.Fuel<0)
+        if (carController.Fuel <= 0)
         {
-            Destroy(Car);
+            isFuelEmpty = true;
+            gameManager.GameOver();
+            Debug.Log("Fuel finished");
         }
         fuelText.text = "FUEL:" + Mathf.FloorToInt(carController.Fuel).ToString();
     }
 
     public void AddFuel(float value)
     {
+        if(carController.Fuel <= 90)
         carController.Fuel += value;
         
     }
         
     public void RemoveFuel()
     {
+        if(carController.Fuel>0.01f)
         carController.Fuel -= carController.FuelConsumption;
     }
 

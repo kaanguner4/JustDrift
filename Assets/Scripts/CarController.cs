@@ -11,7 +11,7 @@ public class CarController : MonoBehaviour
     [SerializeField] public float Traction = 1;
     [SerializeField] public float FixedYPosition = -0.2025898f;
 
-    [Header("Fuel")]
+    [Header("Fuel Settings")]
     [SerializeField] public float Fuel = 100;
     [SerializeField] public float FuelConsumption = 1;
 

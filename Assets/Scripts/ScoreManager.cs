@@ -7,7 +7,7 @@ public class ScoreManager : MonoBehaviour
 {
     [SerializeField] public TextMeshProUGUI scoreText;
 
-    private float score = 0;
+    public float score = 0;
 
     public static ScoreManager instance;
 
