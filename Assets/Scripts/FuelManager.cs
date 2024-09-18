@@ -53,7 +53,7 @@ public class FuelManager : MonoBehaviour
     public void RemoveFuel()
     {
         if(carController.Fuel>0.01f)
-        carController.Fuel -= carController.FuelConsumption;
+        carController.Fuel -= carController.FuelConsumption * (carController.rb.velocity.magnitude / 5);
     }
 
 

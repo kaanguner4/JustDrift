@@ -3,6 +3,8 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody), typeof(BoxCollider))]
 public class CarController : MonoBehaviour
 {
+    public static CarController instance;
+
     [Header("Car Settings")]
     [SerializeField] public float MoveSpeed = 40;
     [SerializeField] public float MaxSpeed = 15;
@@ -16,14 +18,20 @@ public class CarController : MonoBehaviour
     [SerializeField] public float FuelConsumption = 1;
 
     [Header("Joystick")]
-    [SerializeField] private Rigidbody rb;
+    [SerializeField] public Rigidbody rb;
     [SerializeField] private FloatingJoystick _joystick;
     private Vector3 startPosition;
     private Quaternion startRotation;
     private bool isMovingBackward = false;
 
+    private Vector3 lastPosition;
+    public float totalDistance = 0;
 
-    private void Start()
+    private void Awake()
+    {
+        instance = this;
+    }
+    public void Start()
     {
 
         rb = GetComponent<Rigidbody>();
@@ -35,26 +43,9 @@ public class CarController : MonoBehaviour
 
         startPosition = transform.position;
         startRotation = transform.rotation;
+
+        lastPosition = transform.position;
     }
-    /*private void FixedUpdate()
-    {
-        if (Input.touchCount == 3)
-        {
-            ResetCarPosition();
-        };
-        if (_joystick.Vertical < -0.65f)
-        {
-            isMovingBackward = true;
-            MoveCar(isMovingBackward);
-        }
-        else if(Input.touchCount>0)
-        {
-            isMovingBackward=false;
-            Vector3 forwardForce = transform.forward * MoveSpeed * Time.deltaTime;
-            rb.AddForce(forwardForce, ForceMode.Acceleration);
-            MoveCar(isMovingBackward);
-        }
-    }*/
 
     private void FixedUpdate()
     {
@@ -76,6 +67,9 @@ public class CarController : MonoBehaviour
             rb.MoveRotation(Quaternion.Slerp(rb.rotation, targetRotation, SteerAngle * Time.deltaTime));
 
         }
+
+        UpdateDistance();
+
 
     }
 
@@ -106,13 +100,24 @@ public class CarController : MonoBehaviour
         }
         
     }
-    void ResetCarPosition()
+
+    public void UpdateDistance()
+    {
+        Vector3 currentPosition = transform.position;
+        float distance = Vector3.Distance(lastPosition, currentPosition);
+        totalDistance += distance;
+        lastPosition = currentPosition;
+        Debug.Log("Total Distance: " + totalDistance);
+
+
+    }
+    /*void ResetCarPosition()
     {
         rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
 
         transform.position = startPosition;
         transform.rotation = startRotation;
-    }
+    }*/
 
 }

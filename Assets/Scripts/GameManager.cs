@@ -11,15 +11,15 @@ public class GameManager : MonoBehaviour
     public GameObject gamePlayUI;
     public GameObject gameOverUI;
     public GameObject car;
-    public TextMeshProUGUI scoreText;
+    public TextMeshProUGUI gameScoreText;
 
     public CarController carController;
     public ScoreManager scoreManager;
-    private float score = 0;
+    private float gameScore = 0;
 
-    private void Start()
+    public void Start()
     {
-        scoreManager = GetComponent<ScoreManager>();
+        scoreManager = FindObjectOfType<ScoreManager>();
         gameOverUI.SetActive(false);
         gamePlayUI.SetActive(true);
     }
@@ -28,25 +28,23 @@ public class GameManager : MonoBehaviour
     {
         
     }
-    private void printScore()
-    {
-        if (carController.Fuel <= 0)
-        {
-            score = scoreManager.score;
-            scoreText.text = "SCORE:" + score.ToString();
-        }
-    }
+    
     public void GameOver()
     {
         if (carController.Fuel <= 0)
         {
-            
-
             gamePlayUI.SetActive(false);
             gameOverUI.SetActive(true);
             car.SetActive(false);
-
+            
+            gameScoreText.text = "SCORE: " +  ((int)GameScoreCalculator()).ToString();
         }
+    }
+    public float GameScoreCalculator()
+    {
+        gameScore = (ScoreManager.instance.score*10) + (CarController.instance.totalDistance);
+
+        return gameScore;
     }
 
     public void Restart()

@@ -1,6 +1,7 @@
 using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class ScoreManager : MonoBehaviour
@@ -8,10 +9,11 @@ public class ScoreManager : MonoBehaviour
     [SerializeField] public TextMeshProUGUI scoreText;
 
     public float score = 0;
+    public float gameScore = 0; 
 
     public static ScoreManager instance;
 
-    private void Awake()
+    public void Awake()
     {
         instance = this;
     }
@@ -25,5 +27,14 @@ public class ScoreManager : MonoBehaviour
     {
         score += value;
         scoreText.text = "SCORE:" + score.ToString();
+    }
+
+    private void printScore() 
+    {
+      
+    }
+    public void CalculateGameScore()
+    {
+        Debug.Log("Game Score: " + gameScore);
     }
 }
