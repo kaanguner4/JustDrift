@@ -23,21 +23,25 @@ public class GameManager : MonoBehaviour
         gameOverUI.SetActive(false);
         gamePlayUI.SetActive(true);
     }
-
-    public void FixedUpdate()
+    private void Update()
     {
-        
+        if (carController.Fuel <= 0)
+        {
+            GameOver();
+        }
     }
-    
+
     public void GameOver()
     {
         if (carController.Fuel <= 0)
         {
+            carController.Fuel = 0;
             gamePlayUI.SetActive(false);
             gameOverUI.SetActive(true);
             car.SetActive(false);
             
-            gameScoreText.text = "SCORE: " +  ((int)GameScoreCalculator()).ToString();
+            gameScoreText.text = "GAME SCORE: " +  ((int)GameScoreCalculator()).ToString();
+            Debug.Log(ScoreManager.instance.score + "+" + CarController.instance.totalDistance);
         }
     }
     public float GameScoreCalculator()

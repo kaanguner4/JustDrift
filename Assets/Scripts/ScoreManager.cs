@@ -28,13 +28,4 @@ public class ScoreManager : MonoBehaviour
         score += value;
         scoreText.text = "SCORE:" + score.ToString();
     }
-
-    private void printScore() 
-    {
-      
-    }
-    public void CalculateGameScore()
-    {
-        Debug.Log("Game Score: " + gameScore);
-    }
 }

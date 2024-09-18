@@ -107,7 +107,6 @@ public class CarController : MonoBehaviour
         float distance = Vector3.Distance(lastPosition, currentPosition);
         totalDistance += distance;
         lastPosition = currentPosition;
-        Debug.Log("Total Distance: " + totalDistance);
 
 
     }
