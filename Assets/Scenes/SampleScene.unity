@@ -7280,6 +7280,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8380662887193614546, guid: 18a8295788a048c42aff8f711e487add,
         type: 3}
+      propertyPath: Fuel
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8380662887193614546, guid: 18a8295788a048c42aff8f711e487add,
+        type: 3}
       propertyPath: _joystick
       value: 
       objectReference: {fileID: 8170153792919640768}

@@ -32,8 +32,10 @@ public class FuelManager : MonoBehaviour
     {
         fuelText.text = "FUEL:" + Mathf.FloorToInt(carController.Fuel).ToString();
     }
-    private void FixedUpdate()
+    private void Update()
     {
+        Debug.Log(carController.Fuel);
+
         if (carController.Fuel <= 0)
         {
             isFuelEmpty = true;
@@ -42,7 +44,7 @@ public class FuelManager : MonoBehaviour
         }
         fuelText.text = "FUEL:" + Mathf.FloorToInt(carController.Fuel).ToString();
     }
-
+    
     public void AddFuel(float value)
     {
         if(carController.Fuel <= 90)
@@ -52,7 +54,7 @@ public class FuelManager : MonoBehaviour
         
     public void RemoveFuel()
     {
-        if(carController.Fuel>0.01f)
+        if(carController.Fuel>0)
         carController.Fuel -= carController.FuelConsumption * (carController.rb.velocity.magnitude / 10);
     }
 
