@@ -34,7 +34,7 @@ public class FuelManager : MonoBehaviour
     }
     private void Update()
     {
-        Debug.Log(carController.Fuel);
+        
 
         if (carController.Fuel <= 0)
         {

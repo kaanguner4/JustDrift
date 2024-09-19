@@ -5,9 +5,11 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SocialPlatforms.Impl;
+using UnityEngine.Events;
 
 public class GameManager : MonoBehaviour
 {
+
     public GameObject gamePlayUI;
     public GameObject gameOverUI;
     public GameObject gamePauseUI;
@@ -17,6 +19,8 @@ public class GameManager : MonoBehaviour
     public CarController carController;
     public ScoreManager scoreManager;
     private float gameScore = 0;
+
+    
 
     public void Start()
     {
@@ -44,6 +48,7 @@ public class GameManager : MonoBehaviour
     {
         if (carController.Fuel <= 0)
         {
+            SaveScore();
             carController.Fuel = 0;
             gamePlayUI.SetActive(false);
             gameOverUI.SetActive(true);
@@ -55,7 +60,7 @@ public class GameManager : MonoBehaviour
     }
     public float GameScoreCalculator()
     {
-        gameScore = (ScoreManager.instance.score*10) + (CarController.instance.totalDistance);
+        gameScore = (ScoreManager.instance.score*10) + (CarController.instance.totalDistance/10);
 
         return gameScore;
     }
@@ -73,6 +78,20 @@ public class GameManager : MonoBehaviour
     public void MainMenu()
     {
         SceneManager.LoadScene("MainMenu");
-        Debug.Log("MainMenu");
+        Debug.Log("Main Menu");
+    }
+
+    public void SaveScore() {
+        int scoreForSave =  (int)gameScore;
+        PlayerPrefs.SetInt("GameScore", scoreForSave);
+        PlayerPrefs.Save();
+        Debug.Log("Score Saved");
+    }
+
+    public void GoLeaderboard()
+    {
+
+        SceneManager.LoadScene("LeaderboardScene");
+        Debug.Log("Leaderboard");
     }
 }

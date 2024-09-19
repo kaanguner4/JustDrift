@@ -8,7 +8,7 @@ public class MainMenuManager : MonoBehaviour
     public GameObject mainMenuUI;
     private void Awake()
     {
-        Debug.Log("GameOpened");
+        Debug.Log("Game Opened");
         mainMenuUI.SetActive(true);
     }
     public void TapToStart()
@@ -17,6 +17,13 @@ public class MainMenuManager : MonoBehaviour
         Debug.Log("Started");
         mainMenuUI.SetActive(false);
 
+    }
+
+    public void Leaderboard()
+    {
+        SceneManager.LoadScene("LeaderboardScene");
+        Debug.Log("Leaderboard");
+        mainMenuUI.SetActive(false);
     }
 
 }
