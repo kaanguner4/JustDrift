@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
 {
     public GameObject gamePlayUI;
     public GameObject gameOverUI;
+    public GameObject gamePauseUI;
     public GameObject car;
     public TextMeshProUGUI gameScoreText;
 
@@ -22,6 +23,7 @@ public class GameManager : MonoBehaviour
         scoreManager = GetComponent<ScoreManager>();
         gameOverUI.SetActive(false);
         gamePlayUI.SetActive(true);
+        gamePauseUI.SetActive(false);
     }
     private void Update()
     {
@@ -30,6 +32,13 @@ public class GameManager : MonoBehaviour
             GameOver();
         }
     }
+
+    public void Pause()
+    {
+        gamePlayUI.SetActive(false);
+        gamePauseUI.SetActive(true);
+    }
+
 
     public void GameOver()
     {
@@ -50,7 +59,11 @@ public class GameManager : MonoBehaviour
 
         return gameScore;
     }
-
+    public void Ressume()
+    {
+        gamePauseUI.SetActive(false);
+        gamePlayUI.SetActive(true);
+    }
     public void Restart()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
@@ -59,7 +72,6 @@ public class GameManager : MonoBehaviour
 
     public void MainMenu()
     {
-        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         SceneManager.LoadScene("MainMenu");
         Debug.Log("MainMenu");
     }
