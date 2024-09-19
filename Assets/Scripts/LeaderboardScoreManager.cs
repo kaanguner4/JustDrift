@@ -17,7 +17,7 @@ public class LeaderboardScoreManager : MonoBehaviour
     }
     public void GetScore()
     {
-        int finalScore = PlayerPrefs.GetInt("CurrentScore");
+        int finalScore = PlayerPrefs.GetInt("GameScore");
         inputScore.text = finalScore.ToString();
     }
 
