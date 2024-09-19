@@ -10,8 +10,7 @@ public class FuelTank : MonoBehaviour
 
     private void Start()
     {
-
-        spawner = FindObjectOfType<RandomSpawner>();
+        spawner = FindAnyObjectByType<RandomSpawner>();
     }
 
     private void OnTriggerEnter(Collider other)

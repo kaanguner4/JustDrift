@@ -19,7 +19,7 @@ public class FuelManager : MonoBehaviour
 
     private void OnEnable()
     {
-         carController = FindObjectOfType<CarController>();
+         carController = FindAnyObjectByType<CarController>();
 
     }
     private void Awake()
@@ -57,6 +57,4 @@ public class FuelManager : MonoBehaviour
         if(carController.Fuel>0)
         carController.Fuel -= carController.FuelConsumption * (carController.rb.velocity.magnitude / 10);
     }
-
-
 }

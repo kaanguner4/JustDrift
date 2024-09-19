@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
 
     public void Start()
     {
-        scoreManager = FindObjectOfType<ScoreManager>();
+        scoreManager = GetComponent<ScoreManager>();
         gameOverUI.SetActive(false);
         gamePlayUI.SetActive(true);
     }
