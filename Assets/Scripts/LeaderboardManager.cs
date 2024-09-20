@@ -11,12 +11,14 @@ public class LeaderboardManager : MonoBehaviour
     [SerializeField] private List<TextMeshProUGUI> names;
     [SerializeField] private List<TextMeshProUGUI> scores;
 
+    LeaderboardScoreManager scoreManager;
 
-    private string publicLeaderboardKey = "0eda27893df0fbe88ea1de7198b8e00aa9ba4094ee6d92a34825716c7e9e6467";
+    private string publicLeaderboardKey = "d3ea1bccf04eee49ae3f621f24634c2bb7502a7365b0ebd8729c6b230c4c694e";
 
 
     private void Start()
     {
+        scoreManager = GetComponent<LeaderboardScoreManager>();
         GetLeaderboard();
     }
     public void GetLeaderboard()
@@ -37,7 +39,7 @@ public class LeaderboardManager : MonoBehaviour
         LeaderboardCreator.UploadNewEntry(publicLeaderboardKey, username, score, ((msg) => {
             GetLeaderboard();
         }));
-        LeaderboardCreator.ResetPlayer();
+        //ResetPlayer();
         Debug.Log("Set Leaderboard Entry");
     }
 
@@ -45,5 +47,11 @@ public class LeaderboardManager : MonoBehaviour
     {
         SceneManager.LoadScene("MainMenu");
         Debug.Log("Main Menu");
+    }
+
+    public void ResetPlayer()
+    {
+        LeaderboardCreator.ResetPlayer();
+        Debug.Log("PlayerReset");
     }
 }

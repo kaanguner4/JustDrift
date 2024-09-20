@@ -65,6 +65,6 @@ public class RandomSpawner : MonoBehaviour
 
     public Vector3 GetRandomPosition()
     {
-        return new Vector3(Random.Range(-50, 51), 1, Random.Range(-100, 101)); //+ car.transform.position; //(creates a position depending on the car)
+        return new Vector3(Random.Range(-99, 99), 1, Random.Range(-99, 99)); //+ car.transform.position; //(creates a position depending on the car)
     }
 }
