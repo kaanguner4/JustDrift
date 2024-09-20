@@ -39,7 +39,7 @@ public class LeaderboardManager : MonoBehaviour
         LeaderboardCreator.UploadNewEntry(publicLeaderboardKey, username, score, ((msg) => {
             GetLeaderboard();
         }));
-        //ResetPlayer();
+        ResetPlayer();
         Debug.Log("Set Leaderboard Entry");
     }
 
