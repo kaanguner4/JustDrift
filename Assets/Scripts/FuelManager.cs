@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -34,7 +32,7 @@ public class FuelManager : MonoBehaviour
     }
     private void Update()
     {
-        
+ 
 
         if (carController.Fuel <= 0)
         {

@@ -1,11 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 using TMPro;
-using UnityEngine.SocialPlatforms.Impl;
-using UnityEngine.Events;
 
 public class GameManager : MonoBehaviour
 {

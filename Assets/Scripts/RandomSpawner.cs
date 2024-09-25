@@ -1,11 +1,3 @@
-//coin almadan fuelTank  yeniden olluþturamýyorum
-
-
-
-
-
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class RandomSpawner : MonoBehaviour
