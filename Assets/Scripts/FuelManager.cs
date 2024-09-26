@@ -61,9 +61,11 @@ public class FuelManager : MonoBehaviour
     
     public void AddFuel(float value)
     {
-        if(carController.Fuel <= 90)
+        if(carController.Fuel <= 100)
         carController.Fuel += value;
-        
+        carController.Fuel = Mathf.Clamp(carController.Fuel, 0, 100);
+
+
     }
         
     public void RemoveFuel()
