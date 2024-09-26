@@ -7,8 +7,8 @@ public class MenuCameraController : MonoBehaviour
     public float swipeSpeed;
     private Vector3 firstTouchPosition, lastTouchPosition;
 
-    public float minX = 0f;  // Kameranýn gidebileceði minimum x pozisyonu
-    public float maxX = 1000f;   // Kameranýn gidebileceði maksimum x pozisyonu
+    public float minX = 0f;  
+    public float maxX = 1000f;   
 
     void Update()
     {
