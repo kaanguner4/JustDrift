@@ -10,7 +10,6 @@ using UnityEngine;
 
 public class RandomSpawner : MonoBehaviour
 {
-    public GameObject car;
     public GameObject coinPrefab;
     public GameObject fuelTankPrefab;
 
@@ -18,6 +17,8 @@ public class RandomSpawner : MonoBehaviour
     public int activeCoins;
     public int maxFuelTanks = 5;
     public int activeFuelTanks;
+
+    public GameObject spawnedCar;
 
     public static RandomSpawner instance;
 
@@ -27,6 +28,9 @@ public class RandomSpawner : MonoBehaviour
     }
     private void Start()
     {
+
+        
+        
         for (int i = 0; i < maxCoins; i++)
         {
             Instantiate(coinPrefab, GetRandomPosition(), Quaternion.identity);

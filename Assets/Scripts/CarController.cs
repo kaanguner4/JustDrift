@@ -19,7 +19,7 @@ public class CarController : MonoBehaviour
 
     [Header("Joystick")]
     [SerializeField] public Rigidbody rb;
-    [SerializeField] private FloatingJoystick _joystick;
+    private FloatingJoystick _joystick;
     private Vector3 startPosition;
     private Quaternion startRotation;
     private bool isMovingBackward = false;
@@ -33,13 +33,12 @@ public class CarController : MonoBehaviour
     }
     public void Start()
     {
+        GetJoystick();
 
         rb = GetComponent<Rigidbody>();
         rb.drag = Drag;
 
         rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
-
-        rb.constraints |= RigidbodyConstraints.FreezePositionY;
 
         startPosition = transform.position;
         startRotation = transform.rotation;
@@ -47,13 +46,18 @@ public class CarController : MonoBehaviour
         lastPosition = transform.position;
     }
 
+    public void GetJoystick()
+    {
+        if(_joystick == null)
+        {
+            _joystick = FindAnyObjectByType<FloatingJoystick>();
+        }
+    }
+
     private void FixedUpdate()
     {
         
-        if (rb.velocity.magnitude > 0.1f)
-        {
-            FuelManager.instance.RemoveFuel();
-        }
+        
 
 
         Vector3 forwardForce = new Vector3(_joystick.Horizontal * MoveSpeed, rb.velocity.y, _joystick.Vertical * MoveSpeed);
@@ -110,13 +114,5 @@ public class CarController : MonoBehaviour
 
 
     }
-    /*void ResetCarPosition()
-    {
-        rb.velocity = Vector3.zero;
-        rb.angularVelocity = Vector3.zero;
-
-        transform.position = startPosition;
-        transform.rotation = startRotation;
-    }*/
 
 }

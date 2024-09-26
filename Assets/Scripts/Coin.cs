@@ -15,7 +15,7 @@ public class Coin : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.name == "Car")
+        if (other.CompareTag("Player"))
         {
             ScoreManager.instance.AddScore(value); 
             spawner.activeCoins--; 

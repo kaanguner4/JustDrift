@@ -6,43 +6,57 @@ using UnityEngine;
 public class FuelManager : MonoBehaviour
 {
     [SerializeField] public TextMeshProUGUI fuelText;
-    [SerializeField] public GameObject Car;
-
-    private bool isFuelEmpty;
-
-    private CarController carController;
+    public GameObject spawnedCar;
+    public CarController carController;
 
     public static FuelManager instance;
-    
     public GameManager gameManager;
 
 
-    private void OnEnable()
-    {
-         carController = FindAnyObjectByType<CarController>();
+    private float timer = 0f;
+    private bool actionDone = false;
 
-    }
+
     private void Awake()
     {
-
         instance = this;
     }
 
     void Start()
     {
+        Invoke("AfterStart", 0.2f);
+    }
+
+    public void AfterStart()
+    {
+        spawnedCar = CarSelectionScript.instance.spawnedCar;
+        carController = spawnedCar.GetComponent<CarController>();
+
         fuelText.text = "FUEL:" + Mathf.FloorToInt(carController.Fuel).ToString();
     }
     private void Update()
     {
-        
-
-        if (carController.Fuel <= 0)
+        if (!actionDone)
         {
-            isFuelEmpty = true;
-            gameManager.GameOver();
-            Debug.Log("Fuel finished");
+            timer += Time.deltaTime;
+
+            if (timer >= 0.5f)
+            {
+                if (carController.Fuel <= 0)
+                {
+
+                    gameManager.GameOver();
+                    Debug.Log("Fuel finished");
+                    actionDone = true;
+                }
+                fuelText.text = "FUEL:" + Mathf.FloorToInt(carController.Fuel).ToString();
+                if (carController.rb.velocity.magnitude > 0.1f)
+                {
+                    FuelManager.instance.RemoveFuel();
+                }
+            }
         }
-        fuelText.text = "FUEL:" + Mathf.FloorToInt(carController.Fuel).ToString();
+        
     }
     
     public void AddFuel(float value)

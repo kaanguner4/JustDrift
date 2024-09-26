@@ -8,35 +8,50 @@ using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.Events;
 
 public class GameManager : MonoBehaviour
-{
-
+{ 
     public GameObject gamePlayUI;
     public GameObject gameOverUI;
     public GameObject gamePauseUI;
-    public GameObject car;
+    public ScoreManager scoreManager;
     public TextMeshProUGUI gameScoreText;
 
+    public GameObject Car;
     public CarController carController;
-    public ScoreManager scoreManager;
     private float gameScore = 0;
 
-    
+    public static GameManager instance;
+
+    void Awake()
+    {
+  
+            instance = this;
+              
+    }
 
     public void Start()
     {
+        //GetCar();
+        Invoke("AfterStar", 0.2f);
         scoreManager = GetComponent<ScoreManager>();
         gameOverUI.SetActive(false);
         gamePlayUI.SetActive(true);
         gamePauseUI.SetActive(false);
     }
+
+    public void AfterStart()
+    {
+
+        Car = CarSelectionScript.instance.spawnedCar;
+        carController = CarSelectionScript.instance.spawnedCar.GetComponent<CarController>();
+        Debug.Log("carcontroller = selectedcar.carcomtroller");
+    }
     private void Update()
     {
-        if (carController.Fuel <= 0)
+        /*if (carController != null && carController.Fuel <= 0) // carController dolu olup olmadýðýný kontrol et
         {
             GameOver();
-        }
+        }*/
     }
-
     public void Pause()
     {
         gamePlayUI.SetActive(false);
@@ -52,7 +67,7 @@ public class GameManager : MonoBehaviour
             carController.Fuel = 0;
             gamePlayUI.SetActive(false);
             gameOverUI.SetActive(true);
-            car.SetActive(false);
+            Car.SetActive(false);
             
             gameScoreText.text = "GAME SCORE: " +  ((int)GameScoreCalculator()).ToString();
             Debug.Log(ScoreManager.instance.score + "+" + CarController.instance.totalDistance);
@@ -81,7 +96,8 @@ public class GameManager : MonoBehaviour
         Debug.Log("Main Menu");
     }
 
-    public void SaveScore() {
+    public void SaveScore()
+    {
         int scoreForSave =  (int)gameScore;
         PlayerPrefs.SetInt("GameScore", scoreForSave);
         PlayerPrefs.Save();
@@ -90,7 +106,6 @@ public class GameManager : MonoBehaviour
 
     public void GoLeaderboard()
     {
-
         SceneManager.LoadScene("LeaderboardScene");
         Debug.Log("Leaderboard");
     }

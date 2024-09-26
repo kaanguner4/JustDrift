@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class FuelTank : MonoBehaviour
 {
-    public CarController CarController;
     public float value = 10;
     private RandomSpawner spawner;
 
@@ -15,9 +14,9 @@ public class FuelTank : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        
-        
-        if (other.name == "Car")
+
+
+        if (other.CompareTag("Player"))
         {
             FuelManager.instance.AddFuel(value);
             spawner.activeFuelTanks--;

@@ -526,30 +526,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 53143525}
   m_CullTransparentMesh: 1
---- !u!1 &81393774 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5006095623148737501, guid: 18a8295788a048c42aff8f711e487add,
-    type: 3}
-  m_PrefabInstance: {fileID: 6607110825855273421}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &81393777 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8352691623140910295, guid: 18a8295788a048c42aff8f711e487add,
-    type: 3}
-  m_PrefabInstance: {fileID: 6607110825855273421}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &81393778 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8380662887193614546, guid: 18a8295788a048c42aff8f711e487add,
-    type: 3}
-  m_PrefabInstance: {fileID: 6607110825855273421}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 81393774}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eaa0718efbaacb04c9f75e87ba78c267, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &83314874
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4404,10 +4380,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca715e688f37d5c4aa945e73214bb82b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 81393777}
-  offset: {x: 0, y: 40, z: -25}
+  target: {fileID: 0}
+  offset: {x: 0, y: 30, z: -20}
   followSpeed: 1000
-  rotationSpeed: 500
+  rotationSpeed: 0
 --- !u!1 &966004414
 GameObject:
   m_ObjectHideFlags: 0
@@ -4573,10 +4549,10 @@ MonoBehaviour:
   gamePlayUI: {fileID: 679688945}
   gameOverUI: {fileID: 9467396}
   gamePauseUI: {fileID: 1382480593}
-  car: {fileID: 81393774}
-  gameScoreText: {fileID: 1830461199}
-  carController: {fileID: 81393778}
   scoreManager: {fileID: 1040033089}
+  gameScoreText: {fileID: 1830461199}
+  Car: {fileID: 0}
+  carController: {fileID: 0}
 --- !u!4 &993112796
 Transform:
   m_ObjectHideFlags: 0
@@ -4589,11 +4565,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1040033090}
-  - {fileID: 1739703249}
-  - {fileID: 1717949588}
-  - {fileID: 1782537657}
+  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1006799512 stripped
@@ -4893,7 +4865,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 993112796}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1084421114
 PrefabInstance:
@@ -7077,7 +7049,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fuelText: {fileID: 1158306156}
-  Car: {fileID: 81393774}
+  spawnedCar: {fileID: 0}
+  carController: {fileID: 0}
   gameManager: {fileID: 993112795}
 --- !u!4 &1717949588
 Transform:
@@ -7092,7 +7065,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 993112796}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1723855945
 GameObject:
@@ -7361,7 +7334,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60fd41e26ac0b2046b7e2c8db6fd225d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  car: {fileID: 81393774}
   coinPrefab: {fileID: 1197715366458559371, guid: 6c2f65d4bf364b640ac8b5869560f3d6,
     type: 3}
   fuelTankPrefab: {fileID: 9143385887058026875, guid: a96bf7e1372ef2d4981e3e305919fa10,
@@ -7370,6 +7342,7 @@ MonoBehaviour:
   activeCoins: 0
   maxFuelTanks: 10
   activeFuelTanks: 0
+  spawnedCar: {fileID: 0}
 --- !u!4 &1739703249
 Transform:
   m_ObjectHideFlags: 0
@@ -7383,7 +7356,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 993112796}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1747098290
 PrefabInstance:
@@ -7697,37 +7670,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1658659518}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1782537656
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1782537657}
-  m_Layer: 0
-  m_Name: CanvasManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1782537657
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1782537656}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 993112796}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1830461196
 GameObject:
   m_ObjectHideFlags: 0
@@ -8818,79 +8760,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 489208998}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &6607110825855273421
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 5006095623148737501, guid: 18a8295788a048c42aff8f711e487add,
-        type: 3}
-      propertyPath: m_Name
-      value: Car
-      objectReference: {fileID: 0}
-    - target: {fileID: 8352691623140910295, guid: 18a8295788a048c42aff8f711e487add,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.0030581434
-      objectReference: {fileID: 0}
-    - target: {fileID: 8352691623140910295, guid: 18a8295788a048c42aff8f711e487add,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.20258975
-      objectReference: {fileID: 0}
-    - target: {fileID: 8352691623140910295, guid: 18a8295788a048c42aff8f711e487add,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -0.051536582
-      objectReference: {fileID: 0}
-    - target: {fileID: 8352691623140910295, guid: 18a8295788a048c42aff8f711e487add,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8352691623140910295, guid: 18a8295788a048c42aff8f711e487add,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8352691623140910295, guid: 18a8295788a048c42aff8f711e487add,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8352691623140910295, guid: 18a8295788a048c42aff8f711e487add,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8352691623140910295, guid: 18a8295788a048c42aff8f711e487add,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8352691623140910295, guid: 18a8295788a048c42aff8f711e487add,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8352691623140910295, guid: 18a8295788a048c42aff8f711e487add,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8380662887193614546, guid: 18a8295788a048c42aff8f711e487add,
-        type: 3}
-      propertyPath: _joystick
-      value: 
-      objectReference: {fileID: 8170153792919640768}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 18a8295788a048c42aff8f711e487add, type: 3}
 --- !u!114 &8170153791900737365
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9144,8 +9013,10 @@ SceneRoots:
   m_Roots:
   - {fileID: 963194228}
   - {fileID: 705507995}
-  - {fileID: 6607110825855273421}
   - {fileID: 740754070}
   - {fileID: 734812973}
   - {fileID: 2070909031}
+  - {fileID: 1040033090}
+  - {fileID: 1739703249}
+  - {fileID: 1717949588}
   - {fileID: 993112796}
