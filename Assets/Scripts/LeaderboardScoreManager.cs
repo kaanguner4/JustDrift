@@ -10,7 +10,6 @@ public class LeaderboardScoreManager : MonoBehaviour
 
     public UnityEvent<string, int> submitScoreEvent;
 
-    private int finalScore;
 
     private void Start()
     {
@@ -18,12 +17,13 @@ public class LeaderboardScoreManager : MonoBehaviour
     }
     public void GetScore()
     {
-        finalScore = PlayerPrefs.GetInt("GameScore");
+        int finalScore = PlayerPrefs.GetInt("GameScore");
         inputScore.text = finalScore.ToString();
     }
 
     public void SubmitScore()
     {
         submitScoreEvent.Invoke(inputName.text, int.Parse(inputScore.text));
+
     }
 }

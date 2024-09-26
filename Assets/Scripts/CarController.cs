@@ -110,4 +110,13 @@ public class CarController : MonoBehaviour
 
 
     }
+    /*void ResetCarPosition()
+    {
+        rb.velocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
+
+        transform.position = startPosition;
+        transform.rotation = startRotation;
+    }*/
+
 }
