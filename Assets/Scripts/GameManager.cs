@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
     public ScoreManager scoreManager;
     public TextMeshProUGUI gameScoreText;
 
-    public GameObject Car;
+    public GameObject spawnedCar;
     public CarController carController;
     private float gameScore = 0;
 
@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour
     public void Start()
     {
         //GetCar();
-        Invoke("AfterStar", 0.2f);
+        Invoke("AfterStart", 0.2f);
         scoreManager = GetComponent<ScoreManager>();
         gameOverUI.SetActive(false);
         gamePlayUI.SetActive(true);
@@ -41,16 +41,16 @@ public class GameManager : MonoBehaviour
     public void AfterStart()
     {
 
-        Car = CarSelectionScript.instance.spawnedCar;
-        carController = CarSelectionScript.instance.spawnedCar.GetComponent<CarController>();
+        spawnedCar = CarSelectionScript.instance.spawnedCar;
+        carController = spawnedCar.GetComponent<CarController>();
         Debug.Log("carcontroller = selectedcar.carcomtroller");
     }
     private void Update()
     {
-        /*if (carController != null && carController.Fuel <= 0) // carController dolu olup olmadýðýný kontrol et
+        if (carController != null && carController.Fuel <= 0) // carController dolu olup olmadýðýný kontrol et
         {
             GameOver();
-        }*/
+        }
     }
     public void Pause()
     {
@@ -61,21 +61,18 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
-        if (carController.Fuel <= 0)
-        {
-            SaveScore();
-            carController.Fuel = 0;
             gamePlayUI.SetActive(false);
             gameOverUI.SetActive(true);
-            Car.SetActive(false);
+            spawnedCar.SetActive(false);
             
             gameScoreText.text = "GAME SCORE: " +  ((int)GameScoreCalculator()).ToString();
-            Debug.Log(ScoreManager.instance.score + "+" + CarController.instance.totalDistance);
-        }
+            Debug.Log(ScoreManager.instance.score + "+" + carController.totalDistance);
+
+            SaveScore();
     }
     public float GameScoreCalculator()
     {
-        gameScore = (ScoreManager.instance.score*10) + (CarController.instance.totalDistance/10);
+        gameScore = (ScoreManager.instance.score*10) + (carController.totalDistance/10);
 
         return gameScore;
     }

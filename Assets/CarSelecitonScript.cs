@@ -13,18 +13,26 @@ public class CarSelectionScript : MonoBehaviour
     public int spawnedCarNumber = 0;
     private void Awake()
     {
-        instance = this;
-        DontDestroyOnLoad(gameObject);
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(instance.gameObject); // Var olan nesneyi yok et
+            instance = this; // Yeni nesneyi instance olarak at
+            DontDestroyOnLoad(gameObject);
+        }
     }
+
     private void Start()
     {
     }
     private void Update()
     {
         int index = PlayerPrefs.GetInt("VehicleIndex");
-        Debug.Log("GetIndex");
         selectedCar = vehiclePrefabs[index];
-        Debug.Log("selectedcar=vehicleprefabs[index]");
         if (SceneManager.GetActiveScene().name == "MainMenu") // Ana menü sahnesinin adýný buraya yaz
         {
             Invoke("MenuCameraControlAndSetInt",0.2f); // Eðer sahne "MainMenu" ise bu fonksiyonu çaðýr

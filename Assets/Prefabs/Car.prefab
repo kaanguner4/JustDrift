@@ -1083,7 +1083,7 @@ MonoBehaviour:
   SteerAngle: 4
   Traction: 1
   FixedYPosition: -0.2025898
-  Fuel: 100
+  Fuel: 10
   FuelConsumption: 0.03
   rb: {fileID: 579065647230258089}
   totalDistance: 0
