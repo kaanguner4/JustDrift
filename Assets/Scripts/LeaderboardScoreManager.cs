@@ -9,7 +9,7 @@ public class LeaderboardScoreManager : MonoBehaviour
     [SerializeField] private TMP_InputField inputName;
 
     public UnityEvent<string, int> submitScoreEvent;
-
+    public int finalScore;
 
     private void Start()
     {
@@ -17,13 +17,13 @@ public class LeaderboardScoreManager : MonoBehaviour
     }
     public void GetScore()
     {
-        int finalScore = PlayerPrefs.GetInt("GameScore");
+        finalScore = PlayerPrefs.GetInt("GameScore");
         inputScore.text = finalScore.ToString();
     }
 
     public void SubmitScore()
     {
         submitScoreEvent.Invoke(inputName.text, int.Parse(inputScore.text));
-
+        
     }
 }

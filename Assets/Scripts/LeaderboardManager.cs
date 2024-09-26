@@ -52,6 +52,7 @@ public class LeaderboardManager : MonoBehaviour
     public void ResetPlayer()
     {
         LeaderboardCreator.ResetPlayer();
+        
         Debug.Log("PlayerReset");
     }
 }
