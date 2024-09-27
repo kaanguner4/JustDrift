@@ -1,10 +1,3 @@
-//coin almadan fuelTank  yeniden olluþturamýyorum
-
-
-
-
-
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,12 +6,15 @@ public class RandomSpawner : MonoBehaviour
     public GameObject coinPrefab;
     public GameObject fuelTankPrefab;
 
-    public int maxCoins = 5; 
+    public List<GameObject> coinPool;
+    public List<GameObject> fuelTankPool;
+
+    public int maxCoins; 
     public int activeCoins;
-    public int maxFuelTanks = 5;
+    public int maxFuelTanks;
     public int activeFuelTanks;
 
-    public GameObject spawnedCar;
+    //public GameObject spawnedCar;
 
     public static RandomSpawner instance;
 
@@ -28,43 +24,19 @@ public class RandomSpawner : MonoBehaviour
     }
     private void Start()
     {
-
-        
-        
         for (int i = 0; i < maxCoins; i++)
         {
+            coinPool.Add(coinPrefab);
             Instantiate(coinPrefab, GetRandomPosition(), Quaternion.identity);
-            SpawnCoin();
+            activeCoins++;
         }
 
         for (int i = 0; i < maxFuelTanks; i++)
         {
+            fuelTankPool.Add(fuelTankPrefab);
             Instantiate(fuelTankPrefab, GetRandomPosition(), Quaternion.identity);
-            SpawnFuelTank();
+            activeFuelTanks++;
         }
-    }
-
-    private void Update()
-    {
-        if (activeCoins < maxCoins)
-        {
-            SpawnCoin();
-        }
-        if (activeFuelTanks< maxFuelTanks)
-        {
-            SpawnFuelTank();
-        }
-
-    }
-    
-
-    private void SpawnCoin()
-    {
-        activeCoins++;
-    }
-    private void SpawnFuelTank()
-    {
-        activeFuelTanks++;
     }
 
     public Vector3 GetRandomPosition()

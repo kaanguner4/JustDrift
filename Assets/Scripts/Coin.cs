@@ -22,6 +22,7 @@ public class Coin : MonoBehaviour
             gameObject.SetActive(false);
             gameObject.transform.position = RandomSpawner.instance.GetRandomPosition();
             gameObject.SetActive(true);
+            spawner.activeCoins++;
         }
     }
 }

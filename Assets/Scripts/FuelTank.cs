@@ -23,6 +23,7 @@ public class FuelTank : MonoBehaviour
             gameObject.SetActive(false);
             gameObject.transform.position = RandomSpawner.instance.GetRandomPosition();
             gameObject.SetActive(true);
+            spawner.activeFuelTanks++;
         }
     }
 }

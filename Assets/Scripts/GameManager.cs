@@ -1,11 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 using TMPro;
-using UnityEngine.SocialPlatforms.Impl;
-using UnityEngine.Events;
 
 public class GameManager : MonoBehaviour
 { 
@@ -23,14 +18,11 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
-  
             instance = this;
-              
     }
 
     public void Start()
     {
-        //GetCar();
         Invoke("AfterStart", 0.2f);
         scoreManager = GetComponent<ScoreManager>();
         gameOverUI.SetActive(false);
@@ -40,14 +32,13 @@ public class GameManager : MonoBehaviour
 
     public void AfterStart()
     {
-
         spawnedCar = CarSelectionScript.instance.spawnedCar;
         carController = spawnedCar.GetComponent<CarController>();
         Debug.Log("carcontroller = selectedcar.carcomtroller");
     }
     private void Update()
     {
-        if (carController != null && carController.Fuel <= 0) // carController dolu olup olmadýðýný kontrol et
+        if (carController != null && carController.Fuel <= 0)
         {
             GameOver();
         }
@@ -57,7 +48,6 @@ public class GameManager : MonoBehaviour
         gamePlayUI.SetActive(false);
         gamePauseUI.SetActive(true);
     }
-
 
     public void GameOver()
     {
